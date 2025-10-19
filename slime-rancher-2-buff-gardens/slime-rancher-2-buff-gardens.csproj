@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <AssemblyName>dev.lordfirespeed.buff_gardens</AssemblyName>
         <Product>Buff Gardens</Product>
         <RootNamespace>BuffGardens</RootNamespace>
@@ -28,9 +28,7 @@
 
     <!-- common dependencies -->
     <ItemGroup>
-        <PackageReference Include="BepInEx.Core" Version="6.0.0-be.674" />
-        <PackageReference Include="BepInEx.IL2CPP" Version="6.0.0-be.577" />
-        <PackageReference Include="UnityEngine.Modules" Version="2021.3.28" />
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.674" IncludeAssets="compile" />
     </ItemGroup>
     <!-- end common dependencies -->
 
@@ -38,6 +36,12 @@
     <ItemGroup Condition="$(CI) != 'true'">
         <Reference Include="Assembly-CSharp">
             <HintPath>$(SlimeRancher2Dir)/BepInEx/interop/Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(SlimeRancher2Dir)/BepInEx/interop/UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2Cppmscorlib">
+            <HintPath>$(SlimeRancher2Dir)/BepInEx/interop/Il2Cppmscorlib.dll</HintPath>
         </Reference>
     </ItemGroup>
     <!-- end actual game assemblies -->
