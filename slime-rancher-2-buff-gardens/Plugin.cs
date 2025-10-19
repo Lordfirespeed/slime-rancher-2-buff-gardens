@@ -32,8 +32,8 @@ public class Plugin : BasePlugin
         foreach (var resourceGrower in resourceGrowers.items)
         {
             if (resourceGrower == null) continue;
-            if (resourceGrower.ReferenceId != "treecuberry01") continue;
-            resourceGrower._maxResources = 15;
+            if (!resourceGrower.ReferenceId.EndsWith("01")) continue;
+            resourceGrower._maxResources += 2;
             resourceGrower._maxSpawnIntervalGameHours /= 2;
             resourceGrower._minSpawnIntervalGameHours /= 2;
             break;
