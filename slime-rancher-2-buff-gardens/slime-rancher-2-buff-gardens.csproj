@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <AssemblyName>dev.lordfirespeed.buff_gardens</AssemblyName>
+        <Product>Buff Gardens</Product>
+        <RootNamespace>BuffGardens</RootNamespace>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <!-- development dependencies -->
+    <ItemGroup>
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3" PrivateAssets="all"/>
+        <PackageReference Include="BepInEx.Analyzers" Version="1.0.8" PrivateAssets="all"/>
+    </ItemGroup>
+    <!-- end development dependencies -->
+
+    <!-- auto-generate plugin info props -->
+    <Target Name="SetPluginVersion" DependsOnTargets="MinVer" BeforeTargets="AddGeneratedFile">
+        <PropertyGroup>
+            <BepInExPluginVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch)</BepInExPluginVersion>
+        </PropertyGroup>
+    </Target>
+    <ItemGroup>
+        <PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" PrivateAssets="all" />
+    </ItemGroup>
+    <!-- end generate plugin info props -->
+
+    <!-- common dependencies -->
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core" Version="6.0.0-be.674" />
+        <PackageReference Include="BepInEx.IL2CPP" Version="6.0.0-be.577" />
+        <PackageReference Include="UnityEngine.Modules" Version="2021.3.28" />
+    </ItemGroup>
+    <!-- end common dependencies -->
+
+    <!-- for local development, use actual game assemblies -->
+    <ItemGroup Condition="$(CI) != 'true'">
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(SlimeRancher2Dir)/BepInEx/interop/Assembly-CSharp.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <!-- end actual game assemblies -->
+
+    <!-- in CI, use GameLibs if available -->
+    <ItemGroup Condition="$(CI) == 'true'">
+
+    </ItemGroup>
+    <!-- end CI dependencies -->
+
+</Project>

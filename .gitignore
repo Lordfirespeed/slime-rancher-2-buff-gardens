@@ -1,0 +1,44 @@
+# Exclude everything
+/*
+
+# Specific includes
+
+## Editorconfig
+!.editorconfig
+
+## Docs
+!Docs/
+
+## Assets
+!assets/
+
+## Build System/Scripts
+!/.config/
+!/nuget.config
+!/Directory.Build.props
+
+## Markdowns
+!*.md
+!LICENSE
+
+## important Git files
+!.gitmodules
+!.gitignore
+!.gitattributes
+!.git-blame-ignore-revs
+
+## GitHub specific
+!.github/
+
+## Solution
+!slime-rancher-2-buff-gardens.sln
+
+### Buff Gardens project
+!slime-rancher-2-buff-gardens/
+slime-rancher-2-buff-gardens/[Bb]in/
+slime-rancher-2-buff-gardens/[Oo]bj/
+
+# Explicit exceptions/ignores
+**.user
+**.local
+!**.template.*.user

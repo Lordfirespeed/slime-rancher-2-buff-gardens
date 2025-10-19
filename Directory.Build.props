@@ -1,0 +1,53 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <!-- Build configurations -->
+    <PropertyGroup>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>AnyCPU;x64</Platforms>
+    </PropertyGroup>
+
+    <!-- compiler/msbuild switches -->
+    <PropertyGroup>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <NoWarn>$(NoWarn);1701;1702;0436</NoWarn>
+        <DebugType>embedded</DebugType>
+    </PropertyGroup>
+
+    <!-- NuGet metadata -->
+    <PropertyGroup>
+        <Authors>Lordfirespeed</Authors>
+        <IsPackable>false</IsPackable>
+        <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/lordfirespeed/slime-rancher-2-buff-gardens</RepositoryUrl>
+        <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="$(ProjectDir)../README.md" Pack="true" PackagePath="/"/>
+    </ItemGroup>
+
+    <!-- MinVer -->
+    <PropertyGroup>
+        <MinVerDefaultPreReleaseIdentifiers>dev</MinVerDefaultPreReleaseIdentifiers>
+        <MinVerTagPrefix>v</MinVerTagPrefix>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="MinVer" Version="4.3.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <SetThunderstorePackageVersionTargetName Include="SetVersion" />
+    </ItemGroup>
+
+    <!-- Release optimisations -->
+    <PropertyGroup Condition="$(Configuration) == 'Release'">
+        <Optimize>true</Optimize>
+    </PropertyGroup>
+
+    <!-- Import local user props -->
+    <Import Project="$(SolutionDir)solution.props.user" Condition="$(CI) != 'true'"/>
+</Project>
