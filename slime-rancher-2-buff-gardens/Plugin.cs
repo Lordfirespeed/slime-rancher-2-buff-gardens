@@ -36,7 +36,7 @@ public class Plugin : BasePlugin
             resourceGrower._maxResources += 2;
             resourceGrower._maxSpawnIntervalGameHours /= 2;
             resourceGrower._minSpawnIntervalGameHours /= 2;
-            break;
         }
+        BuffedTheGardens = true;
     }
 }
